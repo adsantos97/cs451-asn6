@@ -6,18 +6,23 @@ Object subclass: #BinaryTree
 
 !BinaryTree methodsFor: 'initialization'!
 
+" purpose: construct a binary tree holding a single value"
+" input: anInteger - the value at the (root of the) new binary tree"
 initialize: anInteger
     value := anInteger.
     left := nil.
     right := nil.
 !!
 
-!Binary Tree methodsFor: 'maintaining'!
+!BinaryTree methodsFor: 'maintaining'!
 
 value
     ^value
 !
 
+" purpose: insert anInteger into this binary tree"
+" input: anInteger - the value to insert"
+" return: nothing - updates the tree"
 insert: anInteger
     (anInteger < self value)
     ifTrue: 
@@ -49,18 +54,24 @@ insert: anInteger
 
 !BinaryTree methodsFor: 'printing'!
 
+" purpose: print the value"
+" input: aStream - stream to output to"
+" return: nothing"
 printOn: aStream
-    value printOn: a Stream.
+    value printOn: aStream.
     ' ' printOn: aStream
 !
 
+" purpose: inorder traversal of this binary tree"
+" input: nothing"
+" return: nothing"
 inorder
     (left ~= nil)
     ifTrue:
     [
         left inorder
     ].
-    self printOn.
+    self printOn: stdout.
     (right ~= nil)
     ifTrue:
     [
@@ -68,8 +79,11 @@ inorder
     ]
 !
 
+" purpose: preorder traversal of this tree"
+" input: nothing"
+" return: nothing"
 preorder
-    self printOn.
+    self printOn: stdout.
     (left ~= nil)
     ifTrue:
     [
@@ -80,38 +94,50 @@ preorder
     [
         right preorder
     ]
+!
 
+" purpose: postorder traversal of this tree"
+" input: nothing"
+" return: nothing"
 postorder
     (left ~= nil)
     ifTrue:
     [
         left postorder
     ].
-    (right ~-nil)
+    (right ~= nil)
+    ifTrue:
     [
         right postorder
     ].
-    self printOn
+    self printOn: stdout
 
 !!
 
 "Main - for testing"
     | t |
-    t := BinaryTree new initialize: 3.
-    t insert: 5.
+    t := BinaryTree new initialize: 7.
     t insert: 1.
+    t insert: 9.
+    t insert: 0.
+    t insert: 3.
+    t insert: 8.
+    t insert: 10.
     t insert: 2.
+    t insert: 5.
+    t insert: 4.
+    t insert: 6.
     
     'inorder print:' printNl.
     t inorder.
     ' ' printNl.
 
     'preorder print:' printNl.
-    t preOrder.
+    t preorder.
     ' ' printNl.
 
     'postorder print:' printNl.
-    t postOder.
+    t postorder.
     ' ' printNl.
 
 !
