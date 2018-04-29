@@ -52,6 +52,21 @@ insert: anInteger
 
 !!
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 !BinaryTree methodsFor: 'printing'!
 
 " purpose: print the value"
@@ -114,7 +129,15 @@ postorder
 
 !!
 
+
+
+
+
+
+
+
 "Main - for testing"
+"***Tested against output from Java version***"
     | t |
     t := BinaryTree new initialize: 7.
     t insert: 1.
